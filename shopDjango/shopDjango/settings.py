@@ -9,10 +9,15 @@ https://docs.djangoproject.com/en/4.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.0/ref/settings/
 """
-
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
+from django.utils.translation import gettext_lazy
+from dotenv import load_dotenv
+
+from logger.logging import dict_log
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
@@ -20,10 +25,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-zphel1ho-s&nhl8#rp=ty1+bh$9-etjg$402)#cabm)6+^02bp'
+dotenv_path = os.path.join(BASE_DIR, '.env')
+load_dotenv(dotenv_path)
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+SECRET_KEY = os.getenv('SECRET_KEY')
+DEBUG = bool(os.getenv('DEBUG'))
 
 ALLOWED_HOSTS = []
 
@@ -103,7 +109,12 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/4.0/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'ru-RU'
+
+LANGUAGES = (
+    ('ru', gettext_lazy('Russian')),
+    ('en', gettext_lazy('English')),
+)
 
 TIME_ZONE = 'UTC'
 
@@ -121,3 +132,5 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+LOGGING = dict_log()
