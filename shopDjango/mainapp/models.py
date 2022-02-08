@@ -1,3 +1,4 @@
+from django.core.validators import RegexValidator
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 from django.contrib.auth.models import AbstractUser
@@ -25,4 +26,5 @@ class Profile(models.Model):
     city = models.CharField(verbose_name='City', max_length=255, blank=True)
     region = models.CharField(verbose_name='Region', max_length=255, blank=True)
     country = models.CharField(verbose_name="Country", max_length=255, blank=True)
-
+    phone_regex = RegexValidator(regex=r'^(\+\d{1,3})?,?\s?\d{8,13}', message="Phone number must be entered in the format: '+999999999'")
+    phone_number = models.CharField(verbose_name='Phone', max_length=12, blank=True, validators=[phone_regex])
