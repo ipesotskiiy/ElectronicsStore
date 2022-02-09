@@ -13,11 +13,10 @@ from .models import User, Profile
 class UserAdmin(admin.ModelAdmin):
     """Define admin model for custom User model with no email field."""
 
-    list_display = ('first_name', 'last_name', 'second_name', 'email', 'birth_day')
+    list_display = ('first_name', 'last_name', 'second_name', 'email', 'birth_day', 'age')
+    list_display_links = ('email',)
 
 
 @admin.register(Profile)
 class ProfileAdmin(admin.ModelAdmin):
-
-    list_display = ('house', 'street', 'city', 'region', 'country',  'phone_number')
-
+    list_display = ('house', 'street', 'city', 'region', 'country', 'phone_number')
