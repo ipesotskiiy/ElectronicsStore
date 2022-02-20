@@ -19,4 +19,7 @@ class UserAdmin(admin.ModelAdmin):
 
 @admin.register(Profile)
 class ProfileAdmin(admin.ModelAdmin):
-    list_display = ('house', 'street', 'city', 'region', 'country', 'phone_number')
+    list_display = ('house', 'street', 'city', 'region', 'country', 'phone_number', 'static_avatar')
+
+    fields = ('static_avatar',)
+    readonly_fields = ('static_avatar',)

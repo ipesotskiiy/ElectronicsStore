@@ -1,10 +1,15 @@
 from django.core.validators import RegexValidator
 from django.db import models
+from django.utils.safestring import mark_safe
 from django.utils.timezone import now
 from django.utils.translation import gettext_lazy as _
 from django.contrib.auth.models import AbstractUser, User
 from mainapp.managers import UserManager
 from datetime import date, datetime
+
+
+def get_path(instance, file_name):
+    return "/".join([str(instance.name), file_name])
 
 
 class User(AbstractUser):
@@ -40,3 +45,15 @@ class Profile(models.Model):
     phone_regex = RegexValidator(regex=r'^(\+\d{1,3})?,?\s?\d{8,13}',
                                  message="Phone number must be entered in the format: '+999999999'")
     phone_number = models.CharField(verbose_name='Phone', max_length=12, blank=True, validators=[phone_regex])
+    static_avatar = models.ImageField(verbose_name='Avatar', upload_to=get_path, null=True,
+                                      blank=True)
+
+    # def get_avatar(self):
+    #     if not self.avatar:
+    #         return 'static/images/staticUserImages.jpg'
+    #     return self.static_avatar.url
+
+    # def avatar_tag(self):
+    #     return mark_safe('<img src="%s" width="50" height="50" />' % self.get_avatar())
+
+    # avatar_tag.short_description = 'Avatar'
