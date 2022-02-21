@@ -47,13 +47,3 @@ class Profile(models.Model):
     phone_number = models.CharField(verbose_name='Phone', max_length=12, blank=True, validators=[phone_regex])
     static_avatar = models.ImageField(verbose_name='Avatar', upload_to=get_path, null=True,
                                       blank=True)
-
-    # def get_avatar(self):
-    #     if not self.avatar:
-    #         return 'static/images/staticUserImages.jpg'
-    #     return self.static_avatar.url
-
-    # def avatar_tag(self):
-    #     return mark_safe('<img src="%s" width="50" height="50" />' % self.get_avatar())
-
-    # avatar_tag.short_description = 'Avatar'
