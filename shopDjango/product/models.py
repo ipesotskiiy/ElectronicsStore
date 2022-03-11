@@ -30,9 +30,9 @@ class Product(models.Model):
 
 
 class GeneralSpecifications(models.Model):
-    screen_refresh_rate_hertz = models.IntegerField(_('Screen_refresh_rate_hertz'))
+    screen_refresh_rate_hertz = models.PositiveIntegerField(_('Screen refresh rate hertz'))
     screen_size = models.FloatField(_('Screen size'))
-    screen_resolution = models.CharField(_('screen_resolution'), max_length=255)
+    screen_resolution = models.CharField(_('Screen resolution'), max_length=255)
     screen_matrix = models.CharField(_('Screen matrix'), max_length=255)
     CPU = models.CharField(_('CPU'), max_length=255)
     ram_in_gigabytes = models.IntegerField(_('RAM in gigabytes'))
@@ -58,7 +58,7 @@ class MobilePhone(GeneralSpecifications):
 
 class Laptop(GeneralSpecifications):
     name = models.OneToOneField(Product, on_delete=models.CASCADE)
-    number_of_ram_slots = models.IntegerField(_('Number_of_RAM_slots'))
+    number_of_ram_slots = models.IntegerField(_('Number of RAM slots'))
     video_card_type = models.CharField(_('Video card type'), max_length=255)
     video_processor = models.CharField(_('video processor'), max_length=255)
     memory_storage_type = models.CharField(_('memory storage type'), max_length=255)
