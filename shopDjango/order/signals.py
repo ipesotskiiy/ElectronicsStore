@@ -5,8 +5,7 @@ import order
 
 
 @receiver(post_save, sender=order.models.Order)
-def post_save_type(created, **kwargs):
-    instance = kwargs['instance']
+def post_save_type(created, instance, **kwargs):
     if created:
         print(f'Заказ {instance.user} успешно создан')
     else:
@@ -14,6 +13,5 @@ def post_save_type(created, **kwargs):
 
 
 @receiver(post_delete, sender=order.models.Order)
-def post_delete_type(**kwargs):
-    instance = kwargs['instance']
+def post_delete_type(instance, **kwargs):
     print(f'Заказ {instance.user} успешно удалён')

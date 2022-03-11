@@ -6,8 +6,7 @@ from shopDjango import settings
 
 
 @receiver(post_save, sender=settings.AUTH_USER_MODEL)
-def post_save_user(created, **kwargs):
-    instance = kwargs['instance']
+def post_save_user(created, instance, **kwargs):
     if created:
         print(f'Пользователь {instance.email} успешно создан')
     else:
@@ -15,13 +14,12 @@ def post_save_user(created, **kwargs):
 
 
 @receiver(post_delete, sender=settings.AUTH_USER_MODEL)
-def post_delete_type(**kwargs):
-    instance = kwargs['instance']
+def post_delete_type(instance, **kwargs):
     print(f'Пользователь {instance.email} успешно удалён')
 
 
 @receiver(post_save, sender=mainapp.models.Profile)
-def post_save_profile(created, **kwargs):
+def post_save_profile(created, instance, **kwargs):
     if created:
         print('Профиль успешно создан')
     else:
@@ -29,6 +27,5 @@ def post_save_profile(created, **kwargs):
 
 
 @receiver(post_delete, sender=mainapp.models.Profile)
-def post_delete_type(**kwargs):
-    instance = kwargs['instance']
+def post_delete_type(instance, **kwargs):
     print(f'Профиль успешно удалён')
