@@ -1,6 +1,8 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 
+from product.managers import ManufacturerNameQuerySet, ManufacturerNameProductManager
+
 
 class ProductType(models.Model):
     type = models.CharField(_('Product type'), max_length=255)
@@ -21,12 +23,15 @@ class Product(models.Model):
     discount = models.FloatField(blank=True, null=True)
     photo = models.ImageField(_('Product photo'))
 
-    def __str__(self):
-        return self.name
+    objects = ManufacturerNameQuerySet.as_manager()
+    select_manufacturer_name = ManufacturerNameProductManager()
 
     class Meta:
         verbose_name = _('Product')
         verbose_name_plural = _('Products')
+
+    def __str__(self):
+        return self.name
 
 
 class GeneralSpecifications(models.Model):
@@ -66,4 +71,3 @@ class Laptop(GeneralSpecifications):
     class Meta:
         verbose_name = _('Laptop')
         verbose_name_plural = _('Laptops')
-
