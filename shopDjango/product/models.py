@@ -1,3 +1,4 @@
+from django.core.validators import DecimalValidator, MaxValueValidator, MinValueValidator
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 
@@ -7,18 +8,23 @@ from product.managers import ManufacturerNameQuerySet, ManufacturerNameProductMa
 class ProductType(models.Model):
     type = models.CharField(_('Product type'), max_length=255)
 
-    def __str__(self):
-        return self.type
-
     class Meta:
         verbose_name = _('Product type')
         verbose_name_plural = _('Product types')
+
+    def __str__(self):
+        return self.type
 
 
 class Product(models.Model):
     type = models.ForeignKey(ProductType, on_delete=models.SET_NULL, null=True, blank=True)
     name = models.CharField(_('Product name'), max_length=255)
-    price = models.DecimalField(_('Price'), max_digits=10, decimal_places=2)
+    price = models.DecimalField(_('Price'), max_digits=12, decimal_places=2, validators=[
+        DecimalValidator(
+             max_digits=11,
+             decimal_places=2
+        )
+    ])
     manufacturer_name = models.CharField(_('manufacturer name'), max_length=255)
     discount = models.FloatField(blank=True, null=True)
     photo = models.ImageField(_('Product photo'))
@@ -40,12 +46,26 @@ class GeneralSpecifications(models.Model):
     screen_resolution = models.CharField(_('Screen resolution'), max_length=255)
     screen_matrix = models.CharField(_('Screen matrix'), max_length=255)
     CPU = models.CharField(_('CPU'), max_length=255)
-    ram_in_gigabytes = models.IntegerField(_('RAM in gigabytes'))
+    ram_in_gigabytes = models.IntegerField(_('RAM in gigabytes'), validators=[
+        MaxValueValidator(
+            limit_value=256,
+            message=_('No more than two hundred and fifty six')
+        ),
+        MinValueValidator(
+            limit_value=1,
+            message=_('At least four')
+        )
+    ])
     Weight = models.FloatField(_("Weight in kilograms"))
     operating_system = models.CharField(_('Operating system'), max_length=255)
     battery_capacity_in_milliamps = models.IntegerField(_('battery capacity in milliamps'))
     built_in_memory_in_gigabytes = models.IntegerField(_('Built-in memory in gigabytes'))
-    price = models.DecimalField(_('Price'), max_digits=10, decimal_places=2)
+    price = models.DecimalField(_('Price'), max_digits=10, decimal_places=2, validators=[
+        DecimalValidator(
+            max_digits=10,
+            decimal_places=2
+        )
+    ])
 
     class Meta:
         abstract = True
@@ -53,8 +73,26 @@ class GeneralSpecifications(models.Model):
 
 class MobilePhone(GeneralSpecifications):
     name = models.OneToOneField(Product, on_delete=models.CASCADE)
-    number_of_camera = models.IntegerField(_('number of camera'))
-    number_of_SIM_cards = models.IntegerField(_('Number of SIM cards'))
+    number_of_camera = models.IntegerField(_('number of camera'), validators=[
+        MaxValueValidator(
+            limit_value=4,
+            message=_('No more than four')
+        ),
+        MinValueValidator(
+            limit_value=1,
+            message=_('At least one')
+        )
+    ])
+    number_of_SIM_cards = models.IntegerField(_('Number of SIM cards'), validators=[
+        MaxValueValidator(
+            limit_value=3,
+            message=_('No more than three')
+        ),
+        MinValueValidator(
+            limit_value=1,
+            message=_('At least one')
+        )
+    ])
 
     class Meta:
         verbose_name = _('MobilePhone')
@@ -63,7 +101,16 @@ class MobilePhone(GeneralSpecifications):
 
 class Laptop(GeneralSpecifications):
     name = models.OneToOneField(Product, on_delete=models.CASCADE)
-    number_of_ram_slots = models.IntegerField(_('Number of RAM slots'))
+    number_of_ram_slots = models.IntegerField(_('Number of RAM slots'), validators=[
+        MaxValueValidator(
+            limit_value=3,
+            message=_('No more than three')
+        ),
+        MinValueValidator(
+            limit_value=1,
+            message=_('At least one')
+        )
+    ])
     video_card_type = models.CharField(_('Video card type'), max_length=255)
     video_processor = models.CharField(_('video processor'), max_length=255)
     memory_storage_type = models.CharField(_('memory storage type'), max_length=255)
@@ -94,12 +141,11 @@ class RefrigeratorWithFreezer(Freezer):
     freshness_zone = models.CharField(_('freshness zone'), max_length=255)
     egg_stand = models.CharField(_('Egg stand'), max_length=255)
     bottle_rack = models.CharField(_('Bottle rack'), max_length=255)
-    useful_volume_of_the_refrigerating_chamber = models.CharField(_('Useful volume of the refrigerating chamber in liters'),
-                                                                  max_length=255)
+    useful_volume_of_the_refrigerating_chamber = models.CharField(
+        _('Useful volume of the refrigerating chamber in liters'),
+        max_length=255)
     usable_volume_of_the_freezer = models.CharField(_('Usable volume of the freezer in liters'), max_length=255)
 
     class Meta:
         verbose_name = _('Refrigerator with Freezer')
         verbose_name_plural = _('Refrigerators with Freezer')
-
-

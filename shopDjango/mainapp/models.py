@@ -1,4 +1,4 @@
-from django.core.validators import RegexValidator
+from django.core.validators import RegexValidator, DecimalValidator, EmailValidator
 from django.db import models
 from django.utils.timezone import now
 from django.utils.translation import gettext_lazy as _
@@ -16,7 +16,12 @@ class User(AbstractUser):
     objects = UserManager()
 
     username = None
-    email = models.EmailField(_('email address'), unique=True)
+    email = models.EmailField(_('email address'), unique=True, validators=[
+        EmailValidator(
+            message=_('Please enter a valid email address with the following domains: yandex, rambler, gmail, mail'),
+            allowlist=['localhost', 'ynd', 'yandex', 'rambler', 'gmail', 'mail']
+        )
+    ])
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
@@ -65,7 +70,12 @@ class AccumulativeDiscount(models.Model):
 
 class Wallet(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    balance = models.DecimalField(_('Balance'), max_digits=10, decimal_places=2)
+    balance = models.DecimalField(_('Balance'), max_digits=12, decimal_places=2, validators=[
+        DecimalValidator(
+            max_digits=11,
+            decimal_places=2
+        )
+    ])
 
     class Meta:
         verbose_name = _('Wallet')
