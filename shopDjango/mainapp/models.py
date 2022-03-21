@@ -16,7 +16,7 @@ class User(AbstractUser):
     objects = UserManager()
 
     username = None
-    email = models.EmailField(_('email address'), unique=True, validators=[
+    email = models.EmailField(_('email address'), unique=True, db_index=True, validators=[
         EmailValidator(
             message=_('Please enter a valid email address with the following domains: yandex, rambler, gmail, mail'),
             allowlist=['localhost', 'ynd', 'yandex', 'rambler', 'gmail', 'mail']
@@ -27,7 +27,7 @@ class User(AbstractUser):
     REQUIRED_FIELDS = []
 
     second_name = models.CharField(_("Second name"), max_length=255, blank=True)
-    birth_day = models.DateField(_('Birth day'), max_length=255, null=True)
+    birth_day = models.DateField(_('Birth day'), max_length=255, db_index=True, null=True)
 
     @property
     def age(self):
@@ -45,9 +45,9 @@ class User(AbstractUser):
 class Profile(models.Model):
     house = models.CharField(_('House'), max_length=255, blank=True)
     street = models.CharField(_('Street'), max_length=255, blank=True)
-    city = models.CharField(_('City'), max_length=255, blank=True)
-    region = models.CharField(_('Region'), max_length=255, blank=True)
-    country = models.CharField(_("Country"), max_length=255, blank=True)
+    city = models.CharField(_('City'), max_length=255, db_index=True, blank=True)
+    region = models.CharField(_('Region'), max_length=255, db_index=True, blank=True)
+    country = models.CharField(_("Country"), max_length=255, db_index=True, blank=True)
     phone_regex = RegexValidator(regex=r'^(\+\d{1,3})?,?\s?\d{8,13}',
                                  message=_("Phone number must be entered in the format: '+999999999'"))
     phone_number = models.CharField(_('Phone'), max_length=12, blank=True, validators=[phone_regex])
@@ -61,7 +61,7 @@ class Profile(models.Model):
 
 class AccumulativeDiscount(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    discount = models.FloatField(_('discount'))
+    discount = models.FloatField(_('discount'), db_index=True)
 
     class Meta:
         verbose_name = _('Accumulative discount')

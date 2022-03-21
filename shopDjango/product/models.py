@@ -18,15 +18,15 @@ class ProductType(models.Model):
 
 class Product(models.Model):
     type = models.ForeignKey(ProductType, on_delete=models.SET_NULL, null=True, blank=True)
-    name = models.CharField(_('Product name'), max_length=255)
-    price = models.DecimalField(_('Price'), max_digits=12, decimal_places=2, validators=[
+    name = models.CharField(_('Product name'), db_index=True, max_length=255)
+    price = models.DecimalField(_('Price'), max_digits=12, decimal_places=2, db_index=True, validators=[
         DecimalValidator(
-             max_digits=11,
-             decimal_places=2
+            max_digits=11,
+            decimal_places=2
         )
     ])
-    manufacturer_name = models.CharField(_('manufacturer name'), max_length=255)
-    discount = models.FloatField(blank=True, null=True)
+    manufacturer_name = models.CharField(_('manufacturer name'), db_index=True, max_length=255)
+    discount = models.FloatField(blank=True, null=True, db_index=True)
     photo = models.ImageField(_('Product photo'))
 
     objects = ManufacturerNameQuerySet.as_manager()
@@ -41,26 +41,26 @@ class Product(models.Model):
 
 
 class GeneralSpecifications(models.Model):
-    screen_refresh_rate_hertz = models.PositiveIntegerField(_('Screen refresh rate hertz'))
-    screen_size = models.FloatField(_('Screen size'))
-    screen_resolution = models.CharField(_('Screen resolution'), max_length=255)
-    screen_matrix = models.CharField(_('Screen matrix'), max_length=255)
-    CPU = models.CharField(_('CPU'), max_length=255)
-    ram_in_gigabytes = models.IntegerField(_('RAM in gigabytes'), validators=[
+    screen_refresh_rate_hertz = models.PositiveIntegerField(_('Screen refresh rate hertz'), db_index=True)
+    screen_size = models.FloatField(_('Screen size'), db_index=True)
+    screen_resolution = models.CharField(_('Screen resolution'), max_length=255, db_index=True)
+    screen_matrix = models.CharField(_('Screen matrix'), max_length=255, db_index=True)
+    CPU = models.CharField(_('CPU'), max_length=255, db_index=True)
+    ram_in_gigabytes = models.IntegerField(_('RAM in gigabytes'), db_index=True,validators=[
         MaxValueValidator(
             limit_value=256,
             message=_('No more than two hundred and fifty six')
         ),
         MinValueValidator(
             limit_value=1,
-            message=_('At least four')
+            message=_('At least one')
         )
     ])
     Weight = models.FloatField(_("Weight in kilograms"))
-    operating_system = models.CharField(_('Operating system'), max_length=255)
+    operating_system = models.CharField(_('Operating system'), db_index=True, max_length=255)
     battery_capacity_in_milliamps = models.IntegerField(_('battery capacity in milliamps'))
     built_in_memory_in_gigabytes = models.IntegerField(_('Built-in memory in gigabytes'))
-    price = models.DecimalField(_('Price'), max_digits=10, decimal_places=2, validators=[
+    price = models.DecimalField(_('Price'), max_digits=10, decimal_places=2, db_index=True,validators=[
         DecimalValidator(
             max_digits=10,
             decimal_places=2
@@ -111,8 +111,8 @@ class Laptop(GeneralSpecifications):
             message=_('At least one')
         )
     ])
-    video_card_type = models.CharField(_('Video card type'), max_length=255)
-    video_processor = models.CharField(_('video processor'), max_length=255)
+    video_card_type = models.CharField(_('Video card type'), db_index=True, max_length=255)
+    video_processor = models.CharField(_('video processor'), db_index=True, max_length=255)
     memory_storage_type = models.CharField(_('memory storage type'), max_length=255)
 
     class Meta:
@@ -123,7 +123,7 @@ class Laptop(GeneralSpecifications):
 class Freezer(models.Model):
     name = models.OneToOneField(Product, on_delete=models.CASCADE)
     color = models.CharField(_('Color'), max_length=255)
-    total_usable_volume_in_liters = models.FloatField(_('Total usable volume in liters'))
+    total_usable_volume_in_liters = models.FloatField(_('Total usable volume in liters'), db_index=True)
     minimum_temperature_in_degrees_Celsius = models.FloatField(_('Minimum temperature in degrees Celsius'))
     noise_level_in_decibels = models.FloatField(_('Noise level in decibels'))
     total_number_of_boxes = models.IntegerField(_('Total number of boxes'))
@@ -144,7 +144,8 @@ class RefrigeratorWithFreezer(Freezer):
     useful_volume_of_the_refrigerating_chamber = models.CharField(
         _('Useful volume of the refrigerating chamber in liters'),
         max_length=255)
-    usable_volume_of_the_freezer = models.CharField(_('Usable volume of the freezer in liters'), max_length=255)
+    usable_volume_of_the_freezer = models.CharField(_('Usable volume of the freezer in liters'), max_length=255,
+                                                    db_index=True)
 
     class Meta:
         verbose_name = _('Refrigerator with Freezer')
