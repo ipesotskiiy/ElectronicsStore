@@ -28,6 +28,7 @@ class Product(models.Model):
     manufacturer_name = models.CharField(_('manufacturer name'), db_index=True, max_length=255)
     discount = models.FloatField(blank=True, null=True, db_index=True)
     photo = models.ImageField(_('Product photo'))
+    description = models.TextField(_('Description'), max_length=255)
 
     objects = ManufacturerNameQuerySet.as_manager()
     select_manufacturer_name = ManufacturerNameProductManager()
@@ -35,6 +36,7 @@ class Product(models.Model):
     class Meta:
         verbose_name = _('Product')
         verbose_name_plural = _('Products')
+        unique_together = ('name', 'description')
 
     def __str__(self):
         return self.name
@@ -46,7 +48,7 @@ class GeneralSpecifications(models.Model):
     screen_resolution = models.CharField(_('Screen resolution'), max_length=255, db_index=True)
     screen_matrix = models.CharField(_('Screen matrix'), max_length=255, db_index=True)
     CPU = models.CharField(_('CPU'), max_length=255, db_index=True)
-    ram_in_gigabytes = models.IntegerField(_('RAM in gigabytes'), db_index=True,validators=[
+    ram_in_gigabytes = models.IntegerField(_('RAM in gigabytes'), db_index=True, validators=[
         MaxValueValidator(
             limit_value=256,
             message=_('No more than two hundred and fifty six')
@@ -60,7 +62,7 @@ class GeneralSpecifications(models.Model):
     operating_system = models.CharField(_('Operating system'), db_index=True, max_length=255)
     battery_capacity_in_milliamps = models.IntegerField(_('battery capacity in milliamps'))
     built_in_memory_in_gigabytes = models.IntegerField(_('Built-in memory in gigabytes'))
-    price = models.DecimalField(_('Price'), max_digits=10, decimal_places=2, db_index=True,validators=[
+    price = models.DecimalField(_('Price'), max_digits=10, decimal_places=2, db_index=True, validators=[
         DecimalValidator(
             max_digits=10,
             decimal_places=2
@@ -72,7 +74,7 @@ class GeneralSpecifications(models.Model):
 
 
 class MobilePhone(GeneralSpecifications):
-    name = models.OneToOneField(Product, on_delete=models.CASCADE)
+    name = models.OneToOneField(Product, on_delete=models.CASCADE, unique=True)
     number_of_camera = models.IntegerField(_('number of camera'), validators=[
         MaxValueValidator(
             limit_value=4,
@@ -100,7 +102,7 @@ class MobilePhone(GeneralSpecifications):
 
 
 class Laptop(GeneralSpecifications):
-    name = models.OneToOneField(Product, on_delete=models.CASCADE)
+    name = models.OneToOneField(Product, on_delete=models.CASCADE, unique=True)
     number_of_ram_slots = models.IntegerField(_('Number of RAM slots'), validators=[
         MaxValueValidator(
             limit_value=3,
@@ -121,7 +123,7 @@ class Laptop(GeneralSpecifications):
 
 
 class Freezer(models.Model):
-    name = models.OneToOneField(Product, on_delete=models.CASCADE)
+    name = models.OneToOneField(Product, on_delete=models.CASCADE, unique=True)
     color = models.CharField(_('Color'), max_length=255)
     total_usable_volume_in_liters = models.FloatField(_('Total usable volume in liters'), db_index=True)
     minimum_temperature_in_degrees_Celsius = models.FloatField(_('Minimum temperature in degrees Celsius'))
