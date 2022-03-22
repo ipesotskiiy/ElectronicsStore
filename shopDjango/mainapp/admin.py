@@ -2,9 +2,11 @@
 """Integrate with admin module."""
 
 from django.contrib import admin
-
+from django.contrib.auth.admin import UserAdmin
 from .models import User, Profile, AccumulativeDiscount, Wallet
 
+
+# admin.site.register(User, UserAdmin)
 
 @admin.register(User)
 class UserAdmin(admin.ModelAdmin):
@@ -12,6 +14,7 @@ class UserAdmin(admin.ModelAdmin):
 
     list_display = ('first_name', 'last_name', 'second_name', 'email', 'birth_day', 'age')
     list_display_links = ('email',)
+    filter_horizontal = ('groups', 'user_permissions',)
 
 
 @admin.register(Profile)

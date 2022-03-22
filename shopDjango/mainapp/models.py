@@ -78,5 +78,6 @@ class Wallet(models.Model):
     ])
 
     class Meta:
+        permissions = (('can_add_money', 'Top add balance'),)
         verbose_name = _('Wallet')
         verbose_name_plural = _('Wallets')
