@@ -23,11 +23,11 @@ class User(AbstractUser):
         )
     ])
 
+    second_name = models.CharField(_('Second name'), max_length=255, blank=True)
+    birth_day = models.DateField(_('Birth day'), max_length=255, db_index=True, null=True)
+
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
-
-    second_name = models.CharField(_("Second name"), max_length=255, blank=True)
-    birth_day = models.DateField(_('Birth day'), max_length=255, db_index=True, null=True)
 
     @property
     def age(self):
@@ -47,7 +47,7 @@ class Profile(models.Model):
     street = models.CharField(_('Street'), max_length=255, blank=True)
     city = models.CharField(_('City'), max_length=255, db_index=True, blank=True)
     region = models.CharField(_('Region'), max_length=255, db_index=True, blank=True)
-    country = models.CharField(_("Country"), max_length=255, db_index=True, blank=True)
+    country = models.CharField(_('Country'), max_length=255, db_index=True, blank=True)
     phone_regex = RegexValidator(regex=r'^(\+\d{1,3})?,?\s?\d{8,13}',
                                  message=_("Phone number must be entered in the format: '+999999999'"))
     phone_number = models.CharField(_('Phone'), max_length=12, blank=True, validators=[phone_regex])
@@ -61,7 +61,7 @@ class Profile(models.Model):
 
 class AccumulativeDiscount(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    discount = models.FloatField(_('discount'), db_index=True)
+    discount = models.FloatField(_('Discount'), db_index=True)
 
     class Meta:
         verbose_name = _('Accumulative discount')
@@ -78,6 +78,6 @@ class Wallet(models.Model):
     ])
 
     class Meta:
-        permissions = (('can_add_money', 'Top add balance'),)
+        permissions = (('Can_add_money', 'Top add balance'),)
         verbose_name = _('Wallet')
         verbose_name_plural = _('Wallets')

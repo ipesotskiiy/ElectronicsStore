@@ -25,8 +25,8 @@ class Product(models.Model):
             decimal_places=2
         )
     ])
-    manufacturer_name = models.CharField(_('manufacturer name'), db_index=True, max_length=255)
-    discount = models.FloatField(blank=True, null=True, db_index=True)
+    manufacturer_name = models.CharField(_('Manufacturer name'), db_index=True, max_length=255)
+    discount = models.FloatField(_('Discount'), blank=True, null=True, db_index=True)
     photo = models.ImageField(_('Product photo'))
     description = models.TextField(_('Description'), max_length=255)
 
@@ -47,7 +47,7 @@ class GeneralSpecifications(models.Model):
     screen_size = models.FloatField(_('Screen size'), db_index=True)
     screen_resolution = models.CharField(_('Screen resolution'), max_length=255, db_index=True)
     screen_matrix = models.CharField(_('Screen matrix'), max_length=255, db_index=True)
-    CPU = models.CharField(_('CPU'), max_length=255, db_index=True)
+    cpu_name = models.CharField(_('CPU'), max_length=255, db_index=True)
     ram_in_gigabytes = models.IntegerField(_('RAM in gigabytes'), db_index=True, validators=[
         MaxValueValidator(
             limit_value=256,
@@ -58,9 +58,9 @@ class GeneralSpecifications(models.Model):
             message=_('At least one')
         )
     ])
-    Weight = models.FloatField(_("Weight in kilograms"))
+    weight = models.FloatField(_("Weight in kilograms"))
     operating_system = models.CharField(_('Operating system'), db_index=True, max_length=255)
-    battery_capacity_in_milliamps = models.IntegerField(_('battery capacity in milliamps'))
+    battery_capacity_in_milliamps = models.IntegerField(_('Battery capacity in milliamps'))
     built_in_memory_in_gigabytes = models.IntegerField(_('Built-in memory in gigabytes'))
     price = models.DecimalField(_('Price'), max_digits=10, decimal_places=2, db_index=True, validators=[
         DecimalValidator(
@@ -75,7 +75,7 @@ class GeneralSpecifications(models.Model):
 
 class MobilePhone(GeneralSpecifications):
     name = models.OneToOneField(Product, on_delete=models.CASCADE, unique=True)
-    number_of_camera = models.IntegerField(_('number of camera'), validators=[
+    number_of_camera = models.IntegerField(_('Number of camera'), validators=[
         MaxValueValidator(
             limit_value=4,
             message=_('No more than four')
@@ -85,7 +85,7 @@ class MobilePhone(GeneralSpecifications):
             message=_('At least one')
         )
     ])
-    number_of_SIM_cards = models.IntegerField(_('Number of SIM cards'), validators=[
+    number_of_sim_cards = models.IntegerField(_('Number of SIM cards'), validators=[
         MaxValueValidator(
             limit_value=3,
             message=_('No more than three')
@@ -97,8 +97,8 @@ class MobilePhone(GeneralSpecifications):
     ])
 
     class Meta:
-        verbose_name = _('MobilePhone')
-        verbose_name_plural = _('MobilePhones')
+        verbose_name = _('Mobile Phone')
+        verbose_name_plural = _('Mobile Phones')
 
 
 class Laptop(GeneralSpecifications):
@@ -114,8 +114,8 @@ class Laptop(GeneralSpecifications):
         )
     ])
     video_card_type = models.CharField(_('Video card type'), db_index=True, max_length=255)
-    video_processor = models.CharField(_('video processor'), db_index=True, max_length=255)
-    memory_storage_type = models.CharField(_('memory storage type'), max_length=255)
+    video_processor = models.CharField(_('Video processor'), db_index=True, max_length=255)
+    memory_storage_type = models.CharField(_('Memory storage type'), max_length=255)
 
     class Meta:
         verbose_name = _('Laptop')
@@ -132,7 +132,7 @@ class Freezer(models.Model):
     number_of_drawers = models.IntegerField(_('Number of drawers'))
     number_of_drawers_with_doors = models.IntegerField(_('Number of drawers with doors'))
     power_consumption_in_watts = models.FloatField(_('Power consumption in watts'))
-    refrigerant = models.CharField(_('refrigerant'), max_length=255)
+    refrigerant = models.CharField(_('Refrigerant'), max_length=255)
 
     class Meta:
         verbose_name = _('Freezer')
@@ -140,7 +140,7 @@ class Freezer(models.Model):
 
 
 class RefrigeratorWithFreezer(Freezer):
-    freshness_zone = models.CharField(_('freshness zone'), max_length=255)
+    freshness_zone = models.CharField(_('Freshness zone'), max_length=255)
     egg_stand = models.CharField(_('Egg stand'), max_length=255)
     bottle_rack = models.CharField(_('Bottle rack'), max_length=255)
     useful_volume_of_the_refrigerating_chamber = models.CharField(

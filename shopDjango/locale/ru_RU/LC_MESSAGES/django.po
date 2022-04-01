@@ -1,0 +1,369 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-04-01 22:58+0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: .\mainapp\models.py:19
+msgid "email address"
+msgstr "Адрес электронной почты"
+
+#: .\mainapp\models.py:21
+msgid ""
+"Please enter a valid email address with the following domains: yandex, "
+"rambler, gmail, mail"
+msgstr "Пожалуйста, введите действующий адрес электронной почты со следующими доменами: yandex, rambler, gmail, mail"
+
+#: .\mainapp\models.py:26
+msgid "Second name"
+msgstr "Фамилия"
+
+#: .\mainapp\models.py:27
+msgid "Birth day"
+msgstr "День рождения"
+
+#: .\mainapp\models.py:41
+msgid "User"
+msgstr "Пользователь"
+
+#: .\mainapp\models.py:42
+msgid "Users"
+msgstr "Пользователи"
+
+#: .\mainapp\models.py:46
+msgid "House"
+msgstr "Дом"
+
+#: .\mainapp\models.py:47
+msgid "Street"
+msgstr "Улица"
+
+#: .\mainapp\models.py:48
+msgid "City"
+msgstr "Город"
+
+#: .\mainapp\models.py:49
+msgid "Region"
+msgstr "Регион"
+
+#: .\mainapp\models.py:50
+msgid "Country"
+msgstr "Страна"
+
+#: .\mainapp\models.py:52
+msgid "Phone number must be entered in the format: '+999999999'"
+msgstr "Номер телефона необходимо вводить в формате: «+999999999»"
+
+#: .\mainapp\models.py:53
+msgid "Phone"
+msgstr "Номер телефона"
+
+#: .\mainapp\models.py:54
+msgid "Avatar"
+msgstr "Аватар"
+
+#: .\mainapp\models.py:58
+msgid "Profile"
+msgstr "Профиль"
+
+#: .\mainapp\models.py:59
+msgid "Profiles"
+msgstr "Профили"
+
+#: .\mainapp\models.py:64
+msgid "Discount"
+msgstr "Скидка"
+
+#: .\mainapp\models.py:67
+msgid "Accumulative discount"
+msgstr "Накопительная скидка"
+
+#: .\mainapp\models.py:68
+msgid "Accumulative discounts"
+msgstr "Накопительные скидки"
+
+#: .\mainapp\models.py:73
+msgid "Balance"
+msgstr "Баланс"
+
+#: .\mainapp\models.py:82
+msgid "Wallet"
+msgstr "Кошелёк"
+
+#: .\mainapp\models.py:83
+msgid "Wallets"
+msgstr "Кошельки"
+
+#: .\order\models.py:10 .\order\models.py:36
+msgid "Total price"
+msgstr "Итоговая цена"
+
+#: .\order\models.py:18
+msgid "Order"
+msgstr "Заказ"
+
+#: .\order\models.py:19
+msgid "Orders"
+msgstr "Заказы"
+
+#: .\order\models.py:30
+msgid "Order item"
+msgstr "Товар в заказе"
+
+#: .\order\models.py:31
+msgid "Order items"
+msgstr "Товары в заказе"
+
+#: .\order\models.py:44
+msgid "Basket"
+msgstr "Корзина"
+
+#: .\order\models.py:45
+msgid "Baskets"
+msgstr "Корзины"
+
+#: .\order\models.py:54
+msgid "Quantity product"
+msgstr "Количество продукта"
+
+#: .\order\models.py:57
+msgid "You cannot buy more than 10 copies of the same product in 1 order"
+msgstr "Вы не можете купить более 10 копий одного и того же товара в 1 заказе"
+
+#: .\order\models.py:61
+msgid "You cannot buy less than one copy"
+msgstr "Вы не можете купить менее одной копии"
+
+#: .\order\models.py:65
+msgid "Basket item"
+msgstr "Товар в корзине"
+
+#: .\order\models.py:66
+msgid "Basket items"
+msgstr "Товары в корзине"
+
+#: .\product\models.py:9 .\product\models.py:12
+msgid "Product type"
+msgstr "Тип продукта"
+
+#: .\product\models.py:13
+msgid "Product types"
+msgstr "Типы продукта"
+
+#: .\product\models.py:21
+msgid "Product name"
+msgstr "Имя продукта"
+
+#: .\product\models.py:22 .\product\models.py:65
+msgid "Price"
+msgstr "Цена"
+
+#: .\product\models.py:28
+msgid "Manufacturer name"
+msgstr "Имя производителя"
+
+#: .\product\models.py:30
+msgid "Product photo"
+msgstr "Фото продукта"
+
+#: .\product\models.py:31
+msgid "Description"
+msgstr "Описание"
+
+#: .\product\models.py:37
+msgid "Product"
+msgstr "Продукт"
+
+#: .\product\models.py:38
+msgid "Products"
+msgstr "Продукты"
+
+#: .\product\models.py:46
+msgid "Screen refresh rate hertz"
+msgstr "Частота обновления экрана в герцах"
+
+#: .\product\models.py:47
+msgid "Screen size"
+msgstr "Размер экрана"
+
+#: .\product\models.py:48
+msgid "Screen resolution"
+msgstr "Разрешение экрана"
+
+#: .\product\models.py:49
+msgid "Screen matrix"
+msgstr "Матрица экрана"
+
+#: .\product\models.py:50
+msgid "CPU"
+msgstr "Процессор"
+
+#: .\product\models.py:51
+msgid "RAM in gigabytes"
+msgstr "Оперативная память в гигабайтах"
+
+#: .\product\models.py:54
+msgid "No more than two hundred and fifty six"
+msgstr "Не более двухсот пятидесяти шести"
+
+#: .\product\models.py:58 .\product\models.py:85 .\product\models.py:95
+#: .\product\models.py:113
+msgid "At least one"
+msgstr "Хотя бы один"
+
+#: .\product\models.py:61
+msgid "Weight in kilograms"
+msgstr "Вес в килограммах"
+
+#: .\product\models.py:62
+msgid "Operating system"
+msgstr "Операционная система"
+
+#: .\product\models.py:63
+msgid "Battery capacity in milliamps"
+msgstr "Емкость аккумулятора в миллиамперах"
+
+#: .\product\models.py:64
+msgid "Built-in memory in gigabytes"
+msgstr "Встроенная память в гигабайтах"
+
+#: .\product\models.py:78
+msgid "Number of camera"
+msgstr "Количество камер"
+
+#: .\product\models.py:81
+msgid "No more than four"
+msgstr "Не более четырех"
+
+#: .\product\models.py:88
+msgid "Number of SIM cards"
+msgstr "Количество SIM-карт"
+
+#: .\product\models.py:91 .\product\models.py:109
+msgid "No more than three"
+msgstr "Не более трех"
+
+#: .\product\models.py:100
+msgid "Mobile Phone"
+msgstr "Мобильный телефон"
+
+#: .\product\models.py:101
+msgid "Mobile Phones"
+msgstr "Мобильные телефоны"
+
+#: .\product\models.py:106
+msgid "Number of RAM slots"
+msgstr "Количество слотов оперативной памяти"
+
+#: .\product\models.py:116
+msgid "Video card type"
+msgstr "Тип видеокарты"
+
+#: .\product\models.py:117
+msgid "Video processor"
+msgstr "Видеопроцессор"
+
+#: .\product\models.py:118
+msgid "Memory storage type"
+msgstr "Тип памяти"
+
+#: .\product\models.py:121
+msgid "Laptop"
+msgstr "Ноутбук"
+
+#: .\product\models.py:122
+msgid "Laptops"
+msgstr "Ноутбуки"
+
+#: .\product\models.py:127
+msgid "Color"
+msgstr "Цвет"
+
+#: .\product\models.py:128
+msgid "Total usable volume in liters"
+msgstr "Общий полезный объем в литрах"
+
+#: .\product\models.py:129
+msgid "Minimum temperature in degrees Celsius"
+msgstr "Минимальная температура в градусах Цельсия"
+
+#: .\product\models.py:130
+msgid "Noise level in decibels"
+msgstr "Уровень шума в децибелах"
+
+#: .\product\models.py:131
+msgid "Total number of boxes"
+msgstr "Общее количество ящиков"
+
+#: .\product\models.py:132
+msgid "Number of drawers"
+msgstr "Количество ящиков"
+
+#: .\product\models.py:133
+msgid "Number of drawers with doors"
+msgstr "Количество ящиков с дверцами"
+
+#: .\product\models.py:134
+msgid "Power consumption in watts"
+msgstr "Потребляемая мощность в ваттах"
+
+#: .\product\models.py:135
+msgid "Refrigerant"
+msgstr "Хладагент"
+
+#: .\product\models.py:138
+msgid "Freezer"
+msgstr "Морозильник"
+
+#: .\product\models.py:139
+msgid "Freezers"
+msgstr "Морозильники"
+
+#: .\product\models.py:143
+msgid "Freshness zone"
+msgstr "Зона свежести"
+
+#: .\product\models.py:144
+msgid "Egg stand"
+msgstr "Подставка для яиц"
+
+#: .\product\models.py:145
+msgid "Bottle rack"
+msgstr "Полка для бутылок"
+
+#: .\product\models.py:147
+msgid "Useful volume of the refrigerating chamber in liters"
+msgstr "Полезный объем холодильной камеры в литрах"
+
+#: .\product\models.py:149
+msgid "Usable volume of the freezer in liters"
+msgstr "Полезный объем морозильной камеры в литрах"
+
+#: .\product\models.py:153
+msgid "Refrigerator with Freezer"
+msgstr "Холодильник с морозильной камерой"
+
+#: .\product\models.py:154
+msgid "Refrigerators with Freezer"
+msgstr "Холодильники с морозильной камерой"
+
+#: .\shopDjango\settings.py:129
+msgid "Russian"
+msgstr "Русский"
+
+#: .\shopDjango\settings.py:130
+msgid "English"
+msgstr "Английский"

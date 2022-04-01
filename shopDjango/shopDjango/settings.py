@@ -14,15 +14,13 @@ from pathlib import Path
 import os
 import dotenv
 
-
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-from django.utils.translation import gettext_lazy
+from django.utils.translation import gettext_lazy as _
 from dotenv import load_dotenv
 
 from logger.logging import dict_log
 
 BASE_DIR = Path(__file__).resolve().parent.parent
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
@@ -30,12 +28,14 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 dotenv_path = os.path.join(BASE_DIR, '.env')
 load_dotenv(dotenv_path)
-
 SECRET_KEY = os.getenv('SECRET_KEY')
 DEBUG = bool(os.getenv('DEBUG'))
 
 ALLOWED_HOSTS = []
 
+LOCALE_PATHS = (
+    os.path.join(BASE_DIR, 'locale'),
+)
 
 # Application definition
 
@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
     'mainapp',
     'order',
     'product'
@@ -54,6 +55,9 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+
+    'django.middleware.locale.LocaleMiddleware',
+
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -81,7 +85,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'shopDjango.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
@@ -95,7 +98,6 @@ DATABASES = {
         'PORT': os.environ['PORT']
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
@@ -116,22 +118,24 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/4.0/topics/i18n/
 
+
+
 LANGUAGE_CODE = 'ru-RU'
 
-LANGUAGES = (
-    ('ru', gettext_lazy('Russian')),
-    ('en', gettext_lazy('English')),
-)
+LANGUAGES = [
+    ('ru', _('Russian')),
+    ('en', _('English')),
+]
 
 TIME_ZONE = 'UTC'
 
 USE_I18N = True
-
 USE_TZ = True
+USE_L10N = True
+#
 
 
 # Static files (CSS, JavaScript, Images)
