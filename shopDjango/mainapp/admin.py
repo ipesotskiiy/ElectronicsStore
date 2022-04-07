@@ -1,13 +1,11 @@
-from django.contrib import admin
-
 # Register your models here.
 """Integrate with admin module."""
 
 from django.contrib import admin
-from django.utils.translation import gettext_lazy as _
+from mainapp.models import User, Profile, AccumulativeDiscount, Wallet
 
-from .models import User, Profile
 
+# admin.site.register(User, UserAdmin)
 
 @admin.register(User)
 class UserAdmin(admin.ModelAdmin):
@@ -15,11 +13,21 @@ class UserAdmin(admin.ModelAdmin):
 
     list_display = ('first_name', 'last_name', 'second_name', 'email', 'birth_day', 'age')
     list_display_links = ('email',)
+    filter_horizontal = ('groups', 'user_permissions',)
 
 
 @admin.register(Profile)
 class ProfileAdmin(admin.ModelAdmin):
-    list_display = ('house', 'street', 'city', 'region', 'country', 'phone_number', 'static_avatar')
+    list_display = ('house', 'street', 'city', 'region', 'country', 'phone_number', 'static_avatar', 'user')
 
-    fields = ('static_avatar',)
-    readonly_fields = ('static_avatar',)
+    fields = ('static_avatar', 'house', 'street', 'city', 'region', 'country', 'phone_number', 'user')
+
+
+@admin.register(AccumulativeDiscount)
+class AccumulativeDiscount(admin.ModelAdmin):
+    list_display = ('discount', 'user')
+
+
+@admin.register(Wallet)
+class Wallet(admin.ModelAdmin):
+    list_display = ('user', 'balance')
