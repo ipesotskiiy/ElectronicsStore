@@ -100,6 +100,9 @@ class MobilePhone(GeneralSpecifications):
         verbose_name = _('Mobile Phone')
         verbose_name_plural = _('Mobile Phones')
 
+    def __str__(self):
+        return self.name
+
 
 class Laptop(GeneralSpecifications):
     name = models.OneToOneField(Product, on_delete=models.CASCADE, unique=True)
@@ -121,6 +124,9 @@ class Laptop(GeneralSpecifications):
         verbose_name = _('Laptop')
         verbose_name_plural = _('Laptops')
 
+    def __str__(self):
+        return self.name
+
 
 class Freezer(models.Model):
     name = models.OneToOneField(Product, on_delete=models.CASCADE, unique=True)
@@ -138,6 +144,9 @@ class Freezer(models.Model):
         verbose_name = _('Freezer')
         verbose_name_plural = _('Freezers')
 
+    def __str__(self):
+        return self.name
+
 
 class RefrigeratorWithFreezer(Freezer):
     freshness_zone = models.CharField(_('Freshness zone'), max_length=255)
@@ -152,3 +161,6 @@ class RefrigeratorWithFreezer(Freezer):
     class Meta:
         verbose_name = _('Refrigerator with Freezer')
         verbose_name_plural = _('Refrigerators with Freezer')
+
+    def __str__(self):
+        return self.name

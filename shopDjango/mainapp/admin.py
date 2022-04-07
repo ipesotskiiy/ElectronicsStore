@@ -2,8 +2,7 @@
 """Integrate with admin module."""
 
 from django.contrib import admin
-from django.contrib.auth.admin import UserAdmin
-from .models import User, Profile, AccumulativeDiscount, Wallet
+from mainapp.models import User, Profile, AccumulativeDiscount, Wallet
 
 
 # admin.site.register(User, UserAdmin)
@@ -19,10 +18,9 @@ class UserAdmin(admin.ModelAdmin):
 
 @admin.register(Profile)
 class ProfileAdmin(admin.ModelAdmin):
-    list_display = ('house', 'street', 'city', 'region', 'country', 'phone_number', 'static_avatar')
+    list_display = ('house', 'street', 'city', 'region', 'country', 'phone_number', 'static_avatar', 'user')
 
-    fields = ('static_avatar',)
-    readonly_fields = ('static_avatar',)
+    fields = ('static_avatar', 'house', 'street', 'city', 'region', 'country', 'phone_number', 'user')
 
 
 @admin.register(AccumulativeDiscount)

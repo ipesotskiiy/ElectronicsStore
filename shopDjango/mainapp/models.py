@@ -43,6 +43,7 @@ class User(AbstractUser):
 
 
 class Profile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     house = models.CharField(_('House'), max_length=255, blank=True)
     street = models.CharField(_('Street'), max_length=255, blank=True)
     city = models.CharField(_('City'), max_length=255, db_index=True, blank=True)
@@ -51,12 +52,14 @@ class Profile(models.Model):
     phone_regex = RegexValidator(regex=r'^(\+\d{1,3})?,?\s?\d{8,13}',
                                  message=_("Phone number must be entered in the format: '+999999999'"))
     phone_number = models.CharField(_('Phone'), max_length=12, blank=True, validators=[phone_regex])
-    static_avatar = models.ImageField(_('Avatar'), upload_to=get_path, null=True,
-                                      blank=True)
+    static_avatar = models.ImageField(_('Avatar'), upload_to='images/', null=True, blank=True)
 
     class Meta:
         verbose_name = _('Profile')
         verbose_name_plural = _('Profiles')
+
+    def __str__(self):
+        return self.phone_number
 
 
 class AccumulativeDiscount(models.Model):

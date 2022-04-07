@@ -122,7 +122,6 @@ AUTH_PASSWORD_VALIDATORS = [
 # https://docs.djangoproject.com/en/4.0/topics/i18n/
 
 
-
 LANGUAGE_CODE = 'ru-RU'
 
 LANGUAGES = [
@@ -143,7 +142,7 @@ USE_L10N = True
 
 STATIC_URL = 'static/'
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static'),
+    os.path.join(BASE_DIR, 'mainapp/static/images'),
 ]
 STATIC_ROOT = os.path.join(BASE_DIR, 'static_root')
 

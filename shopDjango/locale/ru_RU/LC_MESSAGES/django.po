@@ -29,7 +29,7 @@ msgstr "Пожалуйста, введите действующий адрес �
 
 #: .\mainapp\models.py:26
 msgid "Second name"
-msgstr "Фамилия"
+msgstr "Отчество"
 
 #: .\mainapp\models.py:27
 msgid "Birth day"
@@ -326,11 +326,11 @@ msgstr "Хладагент"
 
 #: .\product\models.py:138
 msgid "Freezer"
-msgstr "Морозильник"
+msgstr "Морозильная камера"
 
 #: .\product\models.py:139
 msgid "Freezers"
-msgstr "Морозильники"
+msgstr "Морозильная камера"
 
 #: .\product\models.py:143
 msgid "Freshness zone"
