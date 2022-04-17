@@ -43,6 +43,8 @@ LOCALE_PATHS = (
 # Application definition
 
 INSTALLED_APPS = [
+    'mainapp',
+
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -50,7 +52,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    'mainapp',
+
     'order',
     'product'
 ]
