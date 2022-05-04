@@ -22,9 +22,9 @@ from mainapp.views import BaseView
 
 urlpatterns = [
     path('', BaseView.as_view(), name='home'),
+    path('user/', include('mainapp.urls')),
     path('admin/', admin.site.urls),
     path('accounts/', include('django.contrib.auth.urls')),
-    path('i18n/', include('django.conf.urls.i18n')),
 ]
 
 if settings.DEBUG:

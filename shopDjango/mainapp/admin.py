@@ -5,20 +5,19 @@ from django.contrib import admin
 from mainapp.models import User, Profile, AccumulativeDiscount, Wallet
 
 
-# admin.site.register(User, UserAdmin)
-
 @admin.register(User)
 class UserAdmin(admin.ModelAdmin):
     """Define admin model for custom User model with no email field."""
 
-    list_display = ('first_name', 'last_name', 'second_name', 'email', 'birth_day', 'age')
+    list_display = ('first_name', 'last_name', 'email', 'birth_day', 'age')
     list_display_links = ('email',)
     filter_horizontal = ('groups', 'user_permissions',)
 
 
 @admin.register(Profile)
 class ProfileAdmin(admin.ModelAdmin):
-    list_display = ('house', 'street', 'city', 'region', 'country', 'phone_number', 'static_avatar', 'user')
+    list_display = (
+    'house', 'street', 'city', 'region', 'country', 'phone_number', 'static_avatar', 'second_name', 'user')
 
     fields = ('static_avatar', 'house', 'street', 'city', 'region', 'country', 'phone_number', 'user')
 
