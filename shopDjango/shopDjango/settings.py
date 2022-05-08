@@ -11,10 +11,10 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 import os
 from pathlib import Path
-import os
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-
+from django.urls import reverse_lazy
 from django.utils.translation import gettext_lazy as _
 
 from dotenv import load_dotenv
@@ -43,6 +43,8 @@ LOCALE_PATHS = (
 # Application definition
 
 INSTALLED_APPS = [
+    'mainapp',
+
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -50,7 +52,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    'mainapp',
     'order',
     'product'
 ]
@@ -87,6 +88,12 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'shopDjango.wsgi.application'
+
+LOGIN_REDIRECT_URL = '/'
+LOGIN_URL = reverse_lazy('login')
+LOGOUT_URL = reverse_lazy('logout')
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases

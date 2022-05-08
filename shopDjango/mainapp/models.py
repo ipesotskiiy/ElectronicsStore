@@ -23,11 +23,11 @@ class User(AbstractUser):
         )
     ])
 
-    second_name = models.CharField(_('Second name'), max_length=255, blank=True)
     birth_day = models.DateField(_('Birth day'), max_length=255, db_index=True, null=True)
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
+
 
     @property
     def age(self):
@@ -53,6 +53,7 @@ class Profile(models.Model):
                                  message=_("Phone number must be entered in the format: '+999999999'"))
     phone_number = models.CharField(_('Phone'), max_length=12, blank=True, validators=[phone_regex])
     static_avatar = models.ImageField(_('Avatar'), upload_to='images/', null=True, blank=True)
+    second_name = models.CharField(_('Second name'), max_length=255, blank=True)
 
     class Meta:
         verbose_name = _('Profile')
