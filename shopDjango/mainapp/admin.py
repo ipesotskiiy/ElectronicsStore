@@ -17,7 +17,7 @@ class UserAdmin(admin.ModelAdmin):
 @admin.register(Profile)
 class ProfileAdmin(admin.ModelAdmin):
     list_display = (
-    'house', 'street', 'city', 'region', 'country', 'phone_number', 'static_avatar', 'second_name', 'user')
+        'house', 'street', 'city', 'region', 'country', 'phone_number', 'static_avatar', 'second_name', 'user')
 
     fields = ('static_avatar', 'house', 'street', 'city', 'region', 'country', 'phone_number', 'user')
 
