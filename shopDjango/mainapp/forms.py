@@ -8,7 +8,7 @@ from django.utils.http import urlsafe_base64_encode
 from django.utils.translation import gettext_lazy as _
 from django.contrib.auth.tokens import default_token_generator as token_generator
 
-from mainapp.models import User
+from mainapp.models import User, Profile
 
 
 class RegistrationUser(UserCreationForm):
@@ -45,4 +45,11 @@ class RegistrationUser(UserCreationForm):
         model = User
         fields = ('email', 'first_name', 'last_name', 'birth_day', 'password1', 'password2')
 
-#
+
+class CorgiCoin(forms.ModelForm):
+    corgi_coin = forms.IntegerField(label=_('Corgi coin'), widget=forms.NumberInput)
+
+    class Meta:
+        model = Profile
+        fields = ('corgi_coin',)
+

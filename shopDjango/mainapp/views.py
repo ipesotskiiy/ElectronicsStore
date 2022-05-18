@@ -1,11 +1,14 @@
+from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.core.exceptions import ValidationError
 from django.shortcuts import render, redirect
 from django.views import View
 from django.contrib.auth import login
-from mainapp.forms import RegistrationUser
+from django.views.generic import DetailView
+
+from mainapp.forms import RegistrationUser, CorgiCoin
 from django.utils.http import urlsafe_base64_decode
 from django.contrib.auth.tokens import default_token_generator as token_generator
-from mainapp.models import User
+from mainapp.models import User, Profile
 
 
 class EmailVerify(View):
@@ -50,6 +53,23 @@ class Registration(View):
         else:
             form = RegistrationUser()
             return render(request, template_name, {'form': form, 'title': 'Registration'})
+
+
+class AdminCorgiCoinView(View, PermissionRequiredMixin):
+    def get(self, request, object_id):
+        tempate_name = 'admin/mainapp/corgi_coin.html'
+        form_class = CorgiCoin
+        return render(request, tempate_name, {'form': form_class, 'title': 'Corgi coin'})
+
+    def post(self, request, object_id):
+        tempate_name = 'admin/mainapp/corgi_coin.html'
+        form_class = CorgiCoin(request.POST)
+        if form_class.is_valid():
+            profile = Profile.objects.get(id=object_id)
+            corgi = form_class.cleaned_data.get('corgi_coin')
+            profile.corgi_coin += corgi
+            profile.save()
+            return redirect('../')
 
 
 class BaseView(View):

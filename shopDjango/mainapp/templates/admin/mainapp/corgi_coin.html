@@ -1,0 +1,9 @@
+{% block title %}Сredit the user corgi coins{% endblock %}
+
+{% block content %}
+<form method="post">
+    {{ form.as_p }}
+    {% csrf_token %}
+    <input type="submit" value="Credit">
+</form>
+{% endblock %}
