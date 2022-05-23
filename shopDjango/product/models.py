@@ -32,6 +32,7 @@ class Product(models.Model):
 
     objects = ManufacturerNameQuerySet.as_manager()
     select_manufacturer_name = ManufacturerNameProductManager()
+    count = models.PositiveIntegerField(_('Quantity in stock'))
 
     class Meta:
         verbose_name = _('Product')
@@ -101,7 +102,7 @@ class MobilePhone(GeneralSpecifications):
         verbose_name_plural = _('Mobile Phones')
 
     def __str__(self):
-        return self.name
+        return str(self.name)
 
 
 class Laptop(GeneralSpecifications):
@@ -125,7 +126,7 @@ class Laptop(GeneralSpecifications):
         verbose_name_plural = _('Laptops')
 
     def __str__(self):
-        return self.name
+        return str(self.name)
 
 
 class Freezer(models.Model):
@@ -145,7 +146,7 @@ class Freezer(models.Model):
         verbose_name_plural = _('Freezers')
 
     def __str__(self):
-        return self.name
+        return str(self.name)
 
 
 class RefrigeratorWithFreezer(Freezer):
@@ -163,4 +164,4 @@ class RefrigeratorWithFreezer(Freezer):
         verbose_name_plural = _('Refrigerators with Freezer')
 
     def __str__(self):
-        return self.name
+        return str(self.name)

@@ -59,6 +59,11 @@ class Profile(models.Model):
         verbose_name = _('Profile')
         verbose_name_plural = _('Profiles')
 
+    @property
+    def full_name(self):
+        full_name = self.user.first_name + " " + self.user.last_name + " " + self.second_name
+        return full_name
+
     def __str__(self):
         return self.phone_number
 

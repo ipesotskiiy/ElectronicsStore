@@ -55,7 +55,8 @@ class Registration(View):
             return render(request, template_name, {'form': form, 'title': 'Registration'})
 
 
-class AdminCorgiCoinView(View, PermissionRequiredMixin):
+class AdminCorgiCoinView(PermissionRequiredMixin, View):
+    permission_required = ["change_profile"]
     def get(self, request, object_id):
         tempate_name = 'admin/mainapp/corgi_coin.html'
         form_class = CorgiCoin
