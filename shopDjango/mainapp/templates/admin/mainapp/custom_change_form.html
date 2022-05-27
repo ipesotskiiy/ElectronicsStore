@@ -1,0 +1,7 @@
+{% extends "admin/change_form.html" %}
+{% block content %}
+    <a class="historylink" href="{% url 'admin:corgi_coin' object_id %}">
+        <input type="submit" value="Add corgi coin">
+    </a>
+{{ block.super }}
+{% endblock content%}

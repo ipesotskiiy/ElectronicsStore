@@ -28,7 +28,6 @@ class User(AbstractUser):
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
 
-
     @property
     def age(self):
         if self.birth_day:
@@ -54,10 +53,16 @@ class Profile(models.Model):
     phone_number = models.CharField(_('Phone'), max_length=12, blank=True, validators=[phone_regex])
     static_avatar = models.ImageField(_('Avatar'), upload_to='images/', null=True, blank=True)
     second_name = models.CharField(_('Second name'), max_length=255, blank=True)
+    corgi_coin = models.PositiveIntegerField(_('Corgi coin'), default=0)
 
     class Meta:
         verbose_name = _('Profile')
         verbose_name_plural = _('Profiles')
+
+    @property
+    def full_name(self):
+        full_name = self.user.first_name + " " + self.user.last_name + " " + self.second_name
+        return full_name
 
     def __str__(self):
         return self.phone_number
