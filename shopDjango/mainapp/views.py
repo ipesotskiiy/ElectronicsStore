@@ -1,11 +1,13 @@
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import PermissionRequiredMixin
+from django.core.checks import messages
 from django.core.exceptions import ValidationError
 from django.shortcuts import render, redirect
 from django.views import View
 from django.contrib.auth import login
 from django.views.generic import DetailView
 
-from mainapp.forms import RegistrationUser, CorgiCoin
+from mainapp.forms import RegistrationUser, CorgiCoin, ProfileForm
 from django.utils.http import urlsafe_base64_decode
 from django.contrib.auth.tokens import default_token_generator as token_generator
 from mainapp.models import User, Profile
@@ -57,6 +59,7 @@ class Registration(View):
 
 class AdminCorgiCoinView(PermissionRequiredMixin, View):
     permission_required = ["change_profile"]
+
     def get(self, request, object_id):
         tempate_name = 'admin/mainapp/corgi_coin.html'
         form_class = CorgiCoin
@@ -73,7 +76,35 @@ class AdminCorgiCoinView(PermissionRequiredMixin, View):
             return redirect('../')
 
 
-class BaseView(View):
+class ProfileView(View):
+    def get(self, request, *args, **kwargs):
+        dict_current_value_profile = {'house': request.user.profile.house,
+                                      'street': request.user.profile.street,
+                                      'city': request.user.profile.city,
+                                      'region': request.user.profile.region,
+                                      'country': request.user.profile.country,
+                                      'phone_number': request.user.profile.phone_number,
+                                      'static_avatar': request.user.profile.static_avatar,
+                                      'second_name': request.user.profile.second_name}
+        template_name = 'mainapp/profile_page.html'
+        form_class = ProfileForm(initial=dict_current_value_profile)
+        return render(request, template_name, {'form': form_class, 'title': 'Profile page'})
 
+    def post(self, request, *args, **kwargs):
+        template_name = 'mainapp/profile_page.html'
+        profile = request.user.profile
+        form_class = ProfileForm(request.POST, request.FILES, instance=profile)
+        if form_class.is_valid():
+            # image = request.FILES.get('static_avatar')
+            profile = form_class.save(commit=False)
+            profile.user = request.user
+            profile.save()
+            return redirect('user:profile_page')
+        else:
+            form_class = ProfileForm()
+            return redirect('home')
+
+
+class BaseView(View):
     def get(self, request, *args, **kwargs):
         return render(request, "mainapp/base.html", {})

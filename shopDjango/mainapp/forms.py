@@ -53,3 +53,23 @@ class CorgiCoin(forms.ModelForm):
         model = Profile
         fields = ('corgi_coin',)
 
+
+class ProfileForm(forms.ModelForm):
+    house = forms.CharField(label=_('Your house'), widget=forms.TextInput)
+    street = forms.CharField(label=_('Your street'), widget=forms.TextInput)
+    city = forms.CharField(label=_('Your city'), widget=forms.TextInput)
+    region = forms.CharField(label=_('Your region'), widget=forms.TextInput)
+    country = forms.CharField(label=_('Your country'), widget=forms.TextInput)
+    phone_number = forms.CharField(label=_('Your phone'), widget=forms.TextInput)
+    static_avatar = forms.ImageField(label=_('Your avatar (photo)'), required=False)
+    second_name = forms.CharField(label=_('Your second name'), widget=forms.TextInput)
+
+    class Meta:
+        model = Profile
+        fields = ('house', 'street', 'city', 'region', 'country', 'phone_number', 'static_avatar', 'second_name')
+
+
+# class ProfileImageForm(forms.ModelForm):
+#     class Meta:
+#         model = Profile
+#         fields = ('house', 'street', 'city', 'region', 'country', 'phone_number', 'static_avatar', 'second_name')

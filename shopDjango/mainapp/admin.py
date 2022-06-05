@@ -25,7 +25,7 @@ class UserAdmin(admin.ModelAdmin):
 @admin.register(Profile)
 class ProfileAdmin(admin.ModelAdmin):
     change_form_template = 'admin/mainapp/custom_change_form.html'
-    list_display = ('user', 'house', 'street', 'city', 'region', 'country', 'phone_number', 'static_avatar',
+    list_display = ('pk', 'user', 'house', 'street', 'city', 'region', 'country', 'phone_number', 'static_avatar',
                     'second_name', 'full_name', 'corgi_coin',)
     list_display_links = ('user',)
     fields = ('static_avatar', 'house', 'street', 'city', 'region', 'country', 'phone_number', 'second_name', 'user',
