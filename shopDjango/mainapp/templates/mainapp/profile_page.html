@@ -1,5 +1,8 @@
+{% extends 'mainapp/base.html' %}
 {% block title %}Profile Page{% endblock title %}
+{% load static %}
 {% block content %}
+    <img src="{{avatar}}" width="100" height="100">
     <form method='post' enctype="multipart/form-data">
         {% csrf_token %}
         {{form.as_p}}

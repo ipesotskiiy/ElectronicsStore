@@ -8,4 +8,6 @@ from shopDjango import settings
 @receiver(post_save, sender=settings.AUTH_USER_MODEL)
 def link_to_profile(sender, instance, created, **kwargs):
     if created:
-        Profile.objects.create(user=instance)
+        profile = Profile.objects.create(user=instance, static_avatar="avatar/staticUserImages.jpg")
+
+

@@ -15,3 +15,5 @@ class ManufacturerNameProductManager(models.Manager):
 
     def acer(self):
         return self.get_queryset().acer()
+
+

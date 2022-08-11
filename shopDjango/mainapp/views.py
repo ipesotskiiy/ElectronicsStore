@@ -2,7 +2,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.core.checks import messages
 from django.core.exceptions import ValidationError
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.views import View
 from django.contrib.auth import login
 from django.views.generic import DetailView
@@ -11,6 +11,11 @@ from mainapp.forms import RegistrationUser, CorgiCoin, ProfileForm
 from django.utils.http import urlsafe_base64_decode
 from django.contrib.auth.tokens import default_token_generator as token_generator
 from mainapp.models import User, Profile
+from order.mixins import BasketMixin
+from product.models import ProductType, LatestProducts
+
+menu = ['Войти', 'Регистрация', "Профиль"]
+product_list = ProductType.objects.all
 
 
 class EmailVerify(View):
@@ -88,7 +93,8 @@ class ProfileView(View):
                                       'second_name': request.user.profile.second_name}
         template_name = 'mainapp/profile_page.html'
         form_class = ProfileForm(initial=dict_current_value_profile)
-        return render(request, template_name, {'form': form_class, 'title': 'Profile page'})
+        return render(request, template_name, {'form': form_class, 'title': 'Profile page',
+                                               'avatar': request.user.profile.static_avatar.url})
 
     def post(self, request, *args, **kwargs):
         template_name = 'mainapp/profile_page.html'
@@ -105,6 +111,15 @@ class ProfileView(View):
             return redirect('home')
 
 
-class BaseView(View):
+class BaseView(BasketMixin,View):
     def get(self, request, *args, **kwargs):
-        return render(request, "mainapp/base.html", {})
+        categories = ProductType.objects.get_categories_for_left_sidebar()
+        products = LatestProducts.objects.get_products_for_main_page(
+            'laptop', 'mobilephone', 'freezer', with_respect_to='laptop'
+        )
+        context = {
+            'categories': categories,
+            'products': products,
+            'basket': self.basket
+        }
+        return render(request, 'mainapp/base.html', context)

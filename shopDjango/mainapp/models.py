@@ -50,10 +50,11 @@ class Profile(models.Model):
     country = models.CharField(_('Country'), max_length=255, db_index=True, blank=True)
     phone_regex = RegexValidator(regex=r'^(\+\d{1,3})?,?\s?\d{8,13}',
                                  message=_("Phone number must be entered in the format: '+999999999'"))
-    phone_number = models.CharField(_('Phone'), max_length=12, blank=True, validators=[phone_regex])
+    phone_number = models.CharField(_('Phone'), max_length=12, blank=True, validators=[phone_regex], null=True)
     static_avatar = models.ImageField(_('Avatar'), upload_to='images/', null=True, blank=True)
     second_name = models.CharField(_('Second name'), max_length=255, blank=True)
     corgi_coin = models.PositiveIntegerField(_('Corgi coin'), default=0)
+    orders = models.ManyToManyField('order.Order', verbose_name=_('Buyer orders'), related_name='related_order')
 
     class Meta:
         verbose_name = _('Profile')
@@ -65,7 +66,7 @@ class Profile(models.Model):
         return full_name
 
     def __str__(self):
-        return self.phone_number
+        return "Покупатель: {} {}".format(self.user.first_name, self.user.last_name)
 
 
 class AccumulativeDiscount(models.Model):

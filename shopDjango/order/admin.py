@@ -1,22 +1,17 @@
 from django.contrib import admin
-from order.models import Order, OrderItems, Basket, BasketItems
+from order.models import Order, Basket, BasketItems
 
 
 @admin.register(Order)
 class Order(admin.ModelAdmin):
-    list_display = ('user', 'total_price')
-
-
-@admin.register(OrderItems)
-class OrderItems(admin.ModelAdmin):
-    list_display = ('order', 'product')
+    list_display = ('profile',)
 
 
 @admin.register(Basket)
 class Basket(admin.ModelAdmin):
-    list_display = ('user', 'total_price')
+    list_display = ('owner', 'final_price')
 
 
 @admin.register(BasketItems)
 class BasketItems(admin.ModelAdmin):
-    list_display = ('basket', 'product', 'quantity')
+    list_display = ('basket', 'quantity', 'final_price')
