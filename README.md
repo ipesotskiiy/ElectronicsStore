@@ -1,4 +1,5 @@
 # Django_Shop
+Мой самый первый проект.
 Магазин бытовой техники (backend) <br>
 Стэк: Python, Django, HTML5, Postgres
 <br>
