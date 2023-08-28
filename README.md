@@ -140,6 +140,7 @@ Views приложения пользователя
 Модели админки приложения заказа
 
 Модели заказа, корзины и продуктов в корзине
+
 ![image](https://github.com/Ireal-ai/Django_Shop/assets/82309024/b88ba06d-3cd7-4961-adc0-0a03498df1b9)
 
 Views приложения заказа
@@ -167,3 +168,67 @@ Views приложения заказа
 Оформление заказа (ввод нформации о пользователе и прочих деталях на странице оформления заказа)
 
 ![image](https://github.com/Ireal-ai/Django_Shop/assets/82309024/4e451c81-a18e-49d1-8aed-96dc18e01522)
+
+Мэнеджеры приложения продукта
+
+Для показа продуктов на главной странице 
+
+![image](https://github.com/Ireal-ai/Django_Shop/assets/82309024/97623034-0701-4dfb-aa76-ee91605e1c78)
+
+Для показа названия категорий товаров в навигационной панеле
+
+![image](https://github.com/Ireal-ai/Django_Shop/assets/82309024/63703fd9-1b9b-41a9-b381-9d850858a8a3)
+
+Модели приложения продукта
+
+Модель типа продукта
+
+![image](https://github.com/Ireal-ai/Django_Shop/assets/82309024/8534a8fe-6bf4-4fd7-b37e-ad54b760910e)
+
+Модель продукта с ограничением размера и объёма занимаемой памяти фотографии продукта
+
+![image](https://github.com/Ireal-ai/Django_Shop/assets/82309024/eb4475b2-da34-4ae5-aebc-724f63e9dc19)
+
+![image](https://github.com/Ireal-ai/Django_Shop/assets/82309024/d8779498-acab-471a-9594-8f33356db4a7)
+
+Модель мобильного телефона
+
+![image](https://github.com/Ireal-ai/Django_Shop/assets/82309024/eedc55c2-2914-4e77-9d25-aee3b2dd6002)
+
+![image](https://github.com/Ireal-ai/Django_Shop/assets/82309024/e4eb72a1-30c0-42f8-b956-79926db88a3e)
+
+Модель ноутбука
+
+![image](https://github.com/Ireal-ai/Django_Shop/assets/82309024/86a9d034-57a9-4d31-97f1-d48e6456e435)
+
+![image](https://github.com/Ireal-ai/Django_Shop/assets/82309024/03e2ca39-0c8b-492f-9b47-7b20ff907af6)
+
+Модель холодильника
+
+![image](https://github.com/Ireal-ai/Django_Shop/assets/82309024/513a4220-427e-4dc8-9c71-5e9c8d396678)
+
+Модели админки приложения продукта
+
+Модели типа проддукта, мобильного телефона и ноутбука
+
+![image](https://github.com/Ireal-ai/Django_Shop/assets/82309024/bd1f0901-86ff-48ba-8f75-b11863d7ac5c)
+
+Модель холодильника
+
+![image](https://github.com/Ireal-ai/Django_Shop/assets/82309024/4afcd6cf-26fd-4739-b322-f28f4b0378e1)
+
+Формы приложения продукта
+
+Валдация изображения продукта по размеру и количеству занимаемой памяти
+
+![image](https://github.com/Ireal-ai/Django_Shop/assets/82309024/df172615-d7db-4fbd-add7-36f73b486458)
+
+Views приложения продукта
+
+Деталей продукта
+
+![image](https://github.com/Ireal-ai/Django_Shop/assets/82309024/d6c1aa2f-039b-49d1-b8c7-a8c931a4da6f)
+
+Деталей категории
+
+![image](https://github.com/Ireal-ai/Django_Shop/assets/82309024/7ecb3cdf-70c6-4c8d-9cb5-13677ec4c9d9)
