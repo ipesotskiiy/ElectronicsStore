@@ -113,7 +113,7 @@ Views приложения пользователя
 
 Модели приложения заказа:
 
-Модель продуктов в заказе с высчитыванием финальной цены
+Модель продуктов в корзине с высчитыванием общей цены
 
 ![image](https://github.com/Ireal-ai/Django_Shop/assets/82309024/43e8d477-04c3-46a0-b205-27fde1897b14)
 
@@ -130,3 +130,40 @@ Views приложения пользователя
 ![image](https://github.com/Ireal-ai/Django_Shop/assets/82309024/4aac5d57-ab9c-4b07-a612-a22f4f42c2c3)
 
 ![image](https://github.com/Ireal-ai/Django_Shop/assets/82309024/263b885d-212d-4823-bc2c-5c70761d2050)
+
+Формы приложения заказа
+
+Форма заказа с высчитыванием даты заказа
+
+![image](https://github.com/Ireal-ai/Django_Shop/assets/82309024/4ae62688-224f-4a31-ab03-9974abc5ebc2)
+
+Модели админки приложения заказа
+
+Модели заказа, корзины и продуктов в корзине
+![image](https://github.com/Ireal-ai/Django_Shop/assets/82309024/b88ba06d-3cd7-4961-adc0-0a03498df1b9)
+
+Views приложения заказа
+
+Корзина 
+
+![image](https://github.com/Ireal-ai/Django_Shop/assets/82309024/64961587-a462-43b9-991e-7742c787aedb)
+
+Оформление заказа (показ продуктов и общей цены на странице оформления заказа)
+
+![image](https://github.com/Ireal-ai/Django_Shop/assets/82309024/cc3860d1-848f-484b-97a5-918e0c9acadb)
+
+Добавление продукта в корзину
+
+![image](https://github.com/Ireal-ai/Django_Shop/assets/82309024/31ad5804-a576-492f-9ccc-a1e085038e65)
+
+Удаление продукта из корзины
+
+![image](https://github.com/Ireal-ai/Django_Shop/assets/82309024/ef5c2f66-2f65-47b4-aed7-40e94ab335c8)
+
+Изменение количества продуктов в корзине
+
+![image](https://github.com/Ireal-ai/Django_Shop/assets/82309024/c2f27ced-fe5b-4fed-a57f-18a90f4fe842)
+
+Оформление заказа (ввод нформации о пользователе и прочих деталях на странице оформления заказа)
+
+![image](https://github.com/Ireal-ai/Django_Shop/assets/82309024/4e451c81-a18e-49d1-8aed-96dc18e01522)
