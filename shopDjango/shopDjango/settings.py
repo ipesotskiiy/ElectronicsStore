@@ -42,6 +42,7 @@ LOCALE_PATHS = (
 
 # Application definition
 
+
 INSTALLED_APPS = [
     'mainapp',
 
