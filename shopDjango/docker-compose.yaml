@@ -1,0 +1,63 @@
+version: '3.7'
+
+#services:
+#    django:
+#        build: .
+#        container_name: shopDjango
+#        command: python manage.py runserver 0.0.0.0:8000
+#        ports:
+#            - 8000:8000
+#        depends_on:
+#            - pgdb
+#        env_file:
+#            - ./.env_file
+
+#    pgdb:
+#        image: postgres
+#        container_name: pgdb
+#        volumes:
+#            - pgdbdata:/var/lib/postgresql/data/
+#        ports:
+#            - '5432:5432'
+#        env_file:
+#            - ./.env
+
+services:
+  postgresql-events:
+    restart: unless-stopped
+    image: postgres:12.2
+    environment:
+      PGDATA: /var/lib/postgresql/dictionaries_data
+      POSTGRES_DB: sms_events
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    volumes:
+      - postgresql-data:/var/lib/postgresql/dictionaries_data
+    ports:
+      - 5432:5432
+    networks:
+       - templat-net
+
+  django:
+     build:
+        context: .
+        dockerfile: ./Dockerfile
+     container_name: shopDjango
+     command: python manage.py runserver 0.0.0.0:8000
+     ports:
+        - 8000:8000
+     links:
+        - postgresql-events
+     depends_on:
+        - postgresql-events
+     env_file:
+        - ./.env
+     networks:
+        - templat-net
+
+volumes:
+  postgresql-data:
+    driver: local
+
+networks:
+  templat-net:
