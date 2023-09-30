@@ -9,6 +9,23 @@
 
 # Используемые базы данных
 - PostgreSQL 2.9.3
+# Запуск проекта
+Для начала необходимо сделать клон проекта 
+```
+git clone https://github.com/ipesotskiiy/Django_Shop
+```
+После чего необходимо установить библиотеки 
+````pip install -r requirements.txt````
+Создоть .env файл в котором будут указаны данные для бд
+Создать дирректорию log и файл log.log
+
+![image](https://github.com/ipesotskiiy/Django_Shop/assets/82309024/10247509-f2e6-41a1-8044-304960991b22)
+
+Сделать миграции ```python manage.py migrate```
+
+### Для локального запуска
+
+```python manage.py runserver```
 <br>
 Домашняя страница
 
