@@ -1,5 +1,5 @@
-# Django_Shop
-Магазин бытовой техники (backend) <br>
+# ElectronicsStore
+
 # Используемые языки и фреймворки
 - Python 3.10
 - Django 4.0.1
