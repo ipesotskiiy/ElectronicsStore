@@ -1,11 +1,8 @@
-from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import PermissionRequiredMixin
-from django.core.checks import messages
 from django.core.exceptions import ValidationError
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import render, redirect
 from django.views import View
 from django.contrib.auth import login
-from django.views.generic import DetailView
 
 from mainapp.forms import RegistrationUser, CorgiCoin, ProfileForm
 from django.utils.http import urlsafe_base64_decode
@@ -101,7 +98,6 @@ class ProfileView(View):
         profile = request.user.profile
         form_class = ProfileForm(request.POST, request.FILES, instance=profile)
         if form_class.is_valid():
-            # image = request.FILES.get('static_avatar')
             profile = form_class.save(commit=False)
             profile.user = request.user
             profile.save()
@@ -111,7 +107,7 @@ class ProfileView(View):
             return redirect('home')
 
 
-class BaseView(BasketMixin,View):
+class BaseView(BasketMixin, View):
     def get(self, request, *args, **kwargs):
         categories = ProductType.objects.get_categories_for_left_sidebar()
         products = LatestProducts.objects.get_products_for_main_page(

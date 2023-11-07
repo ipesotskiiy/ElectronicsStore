@@ -21,6 +21,9 @@ from dotenv import load_dotenv
 
 from logger.logging import dict_log
 
+from drf_yasg.views import get_schema_view
+from drf_yasg import openapi
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Quick-start development settings - unsuitable for production
@@ -113,6 +116,17 @@ DATABASES = {
         'PORT': os.getenv('PORT')
     }
 }
+
+APISPEC = {
+       'TITLE': 'My API',
+       'VERSION': '1.0',
+       'OPENAPI_VERSION': '3.0.2',
+       'SWAGGER_UI_CONFiG': {
+           'docExpansion': 'none',
+           'displayOperationId': True,
+       },
+}
+
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
