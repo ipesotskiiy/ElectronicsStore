@@ -9,7 +9,7 @@ from django.utils.translation import gettext_lazy as _
 from order.forms import OrderForm
 from order.mixins import BasketMixin
 from mainapp.models import Profile
-from order.models import Basket, BasketItems
+from order.models import BasketItems
 from order.utils import recalc_basket
 from product.models import ProductType
 

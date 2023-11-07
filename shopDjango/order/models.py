@@ -1,12 +1,9 @@
 from django.contrib.contenttypes.fields import GenericForeignKey
 from django.contrib.contenttypes.models import ContentType
-from django.core.validators import DecimalValidator, MaxValueValidator, MinValueValidator
 from django.db import models
 from django.utils import timezone
 
 from mainapp.models import Profile
-from product.models import Product, ProductType
-from shopDjango.settings import AUTH_USER_MODEL
 from django.utils.translation import gettext_lazy as _
 
 

@@ -2,13 +2,8 @@
 """Integrate with admin module."""
 
 from django.contrib import admin
-from django.http import HttpResponseRedirect
-from django.shortcuts import render, redirect
 from django.urls import path
 
-from django.views.generic import DetailView
-
-from mainapp.forms import CorgiCoin
 from mainapp.models import User, Profile, AccumulativeDiscount, Wallet
 from mainapp.views import AdminCorgiCoinView
 
